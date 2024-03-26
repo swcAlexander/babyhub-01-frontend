@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './item.scss';
 
 export const Item = ({
@@ -14,6 +14,7 @@ export const Item = ({
   const handleClick = () => {
     setIsFlipped(!isFlipped);
   };
+  let key = 1;
   return (
     <div className={`item-container ${isFlipped ? 'flipped' : ''}`}>
       <div className="item-front">
@@ -36,24 +37,22 @@ export const Item = ({
             Забронювати
           </button>
         )}
-        <button onClick={handleClick}>Order</button>
         <div className="product-icon" onClick={handleClick}>
-          Technical Specifications
+          Технічні характеристики
         </div>
       </div>
 
       <div className="item-back">
-        <h3>Technical Specifications</h3>
-        <ul>
+        <h3>Технічні характеристики</h3>
+        <ul className='item-back-list'>
           {specifications.map((spec) => (
-            <li key={spec.key}>
-              {spec.key}: {spec.value}
+            <li key={key=key + 1}>
+              {spec}
             </li>
           ))}
         </ul>
-        <button onClick={handleClick}>Order</button>
-        <div className="icon" onClick={handleClick}>
-          Technical Specifications
+        <div className="product-icon" onClick={handleClick}>
+          Картка продукту
         </div>
       </div>
     </div>

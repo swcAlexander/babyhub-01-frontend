@@ -1,12 +1,12 @@
 .item-par {
   font-weight: normal;
   color: #333;
-  font-size: 0.7em;
+  font-size: 1.5em;
   font-family: calibri;
 }
 .item-span {
   color: #333;
-  font-size: 0.9em;
+  font-size: 1.8em;
   font-weight: 700;
   border-radius: 4px;
   vertical-align: middle;
@@ -15,7 +15,7 @@
 }
 
 .item-span-green {
-  font-size: 0.7em;
+  font-size: 1.5em;
   font-weight: 100;
   color: chartreuse;
 }
@@ -29,7 +29,7 @@
   border-radius: 4px;
   border: 1px solid transparent;
   padding: 0.2em 0.3em;
-  font-size: 0.7em;
+  font-size: 1.5em;
   font-weight: 500;
   font-family: inherit;
   background-color: #10e737;
@@ -61,20 +61,6 @@
   background-image: url(../../assets/svg/conversation-svgrepo-com.svg);
 }
 
-.item-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  gap: 10px;
-  width: 200px;
-  height: auto;
-  border-radius: 5px;
-  margin-bottom: 2px;
-  border: 1px solid #eee;
-  overflow: hidden;
-  background: #fff;
-}
 .item-span-container {
   display: flex;
   width: auto;
@@ -106,8 +92,8 @@
 
 .product-card {
   width: 200px;
-  height: 300px;
-  perspective: 1000px;
+  height: auto;
+  // perspective: 1000px;
   position: relative;
   margin: 20px;
   cursor: pointer;
@@ -115,8 +101,8 @@
 
 .item-front,
 .item-back {
-  width: 100%;
-  height: 100%;
+  width: 400;
+  height: auto;
   position: absolute;
   backface-visibility: hidden;
   transition: transform 0.5s;
@@ -136,10 +122,13 @@
 
 .item-back {
   transform: rotateY(180deg);
+  top: 25%;
+  right: 25%;
+}
+.item-back-list{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: start;
 }
 
 .product-icon {
