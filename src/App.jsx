@@ -2,7 +2,8 @@
 
 import './App.css';
 import { ItemList } from './components/list/List';
-import { getAll } from './redux/actions';
+// import { getAll } from './redux/actions';
+// import fetchGallery from './redux/news-service';
 
 // const props = {
 //   title: 'Вага GAMMA MD 6141',
@@ -30,20 +31,16 @@ import { getAll } from './redux/actions';
 // };
 
 function App() {
-      getAll().then(data => {
-        if (!data) {
-            throw new Error("fffff")
-            
-        }
-        console.log(data)
+
+  
         return (
     <>
-      <ItemList items={ data } /> 
+      <ItemList /> 
     
     </>
   )
-    });
+    }
     
-}
+
 
 export default App;
