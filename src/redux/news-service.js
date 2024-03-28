@@ -1,12 +1,10 @@
 import axios from 'axios';
 
 export default class NewsApiService {
-    searchQuery = '';
-    page = 1;
-    PER_PAGE = 40;
-  constructor() {
-    
-  }
+  searchQuery = '';
+  page = 1;
+  PER_PAGE = 40;
+  constructor() {}
   async fetchItems() {
     const axiosOptions = {
       method: 'get',
@@ -30,33 +28,32 @@ export default class NewsApiService {
       console.log('Помилка!');
     }
   }
-  async postItem(poster, title, price, availability, specifications) {
-        const formData = new FormData();
-        formData.append('poster', poster);
-        formData.append('title', title);
-        formData.append('price', price);
-        formData.append('availability', availability);
-        specifications.forEach((spec, index) => {
-            formData.append(`specifications[${index}]`, spec);
-        });
+  async postItem(title, price, poster, kind, availability, specifications) {
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('price', price);
+    formData.append('poster', poster);
+    formData.append('kind', kind);
+    formData.append('availability', availability);
+    formData.append('specifications', specifications);
 
-        const axiosOptions = {
-            method: 'post',
-            url: 'http://localhost:3000/api/items',
-            data: formData,
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        };
+    const axiosOptions = {
+      method: 'post',
+      url: 'http://localhost:3000/api/items',
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    };
 
-        try {
-            const response = await axios(axiosOptions);
-            return response.data;
-        } catch (error) {
-            console.log('Помилка при додаванні об\'єкта:', error);
-            throw error;
-        }
+    try {
+      const response = await axios(axiosOptions);
+      return response.data;
+    } catch (error) {
+      console.log("Помилка при додаванні об'єкта:", error);
+      throw error;
     }
+  }
 
   incrementPage() {
     this.page += 1;
@@ -83,9 +80,8 @@ export default class NewsApiService {
 }
 
 export async function fetchGallery() {
-    const gatAll = new NewsApiService();
-    const result = await gatAll.fetchItems()
-    console.log(result)
-    return result;
-    
-  }
+  const gatAll = new NewsApiService();
+  const result = await gatAll.fetchItems();
+  console.log(result);
+  return result;
+}

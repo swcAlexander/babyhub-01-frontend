@@ -1,62 +1,104 @@
 import { useState } from 'react';
 import NewsApiService from '../../redux/news-service';
-import "./form.scss"
+import './form.scss';
 
-const AddItemPage = () => {
-    const [poster, setPoster] = useState(null);
-    const [title, setTitle] = useState('');
-    const [price, setPrice] = useState('');
-    const [availability, setAvailability] = useState('available');
-    const [specifications, setSpecifications] = useState([]);
+const AddItemPage = ({ formClass }) => {
+  const [poster, setPoster] = useState(null);
+  const [title, setTitle] = useState('');
+  const [kind, setKind] = useState('');
+  const [price, setPrice] = useState('');
+  const [availability, setAvailability] = useState(false);
+  const specsArray = [];
 
-    const handleFileChange = (e) => {
-        setPoster(e.target.files[0]);
-    };
-    const handleAvailabilityChange = (e) => {
-    setAvailability(e.target.value);
-};
+  const handleAddField = () => {
+    specsArray.push(document.getElementById('specsInput').value);
+    document.getElementById('specsInput').value = '';
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const newsApiService = new NewsApiService();
-        try {
-            await newsApiService.postItem(poster, title, price, availability, specifications);
-            // Опціонально: перенаправлення на іншу сторінку після успішного додавання
-        } catch (error) {
-            console.error('Помилка при додаванні об\'єкта:', error);
-            // Опціонально: вивести повідомлення про помилку для користувача
-        }
-    };
+  const handleFileChange = (e) => {
+    setPoster(e.target.files[0]);
+  };
+  const handleAvailabilityChange = (e) => {
+    setAvailability(e.target.checked);
+  };
 
-    return (
-        <div>
-            <h1>Додати об'єкт</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Фото:
-                    <input type="file" onChange={handleFileChange} accept="image/jpeg" />
-                </label>
-                <label>
-                    Назва:
-                    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-                </label>
-                <label>
-                    Ціна:
-                    <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
-                </label>
-                <label className='label-checkbox' >
-                    <input className='imput-checkbox' type="radio" value="available" checked={availability === 'available'} onChange={handleAvailabilityChange} /> E ljcnegs
-                    <input className='imput-checkbox' type="radio" value="not_available" checked={availability === 'not_available'} onChange={handleAvailabilityChange} /> Ytljcnegyj
-                    <p className='par-checkbox' ></p> 
-                </label>
-                <label>
-                    Технічні характеристики:
-                    <textarea value={specifications.join('\n')} onChange={(e) => setSpecifications(e.target.value.split('\n'))} />
-                </label>
-                <button type="submit">Додати</button>
-            </form>
-        </div>
-    );
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newsApiService = new NewsApiService();
+    const specifications = specsArray;
+    try {
+      await newsApiService.postItem(
+        title,
+        price,
+        poster,
+        kind,
+        availability,
+        specifications
+      );
+    } catch (error) {
+      console.error("Помилка при додаванні об'єкта:", error);
+    }
+  };
+
+  return (
+    <div className={formClass}>
+      <form className="add-form" onSubmit={handleSubmit}>
+        <h2>Додати об'єкт</h2>
+        <label className="add-label">
+          Фото:
+          <input type="file" onChange={handleFileChange} accept="image/jpeg" />
+        </label>
+        <label className="add-label">
+          Назва:
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </label>
+        <label className="add-label">
+          Вид:
+          <input
+            type="text"
+            value={kind}
+            onChange={(e) => setKind(e.target.value)}
+          />
+        </label>
+        <label className="add-label">
+          Ціна:
+          <input
+            type="text"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
+        </label>
+        <label className="label-checkbox add-label">
+          <input
+            className="imput-checkbox"
+            type="checkbox"
+            value={availability}
+            checked={availability === true}
+            onChange={handleAvailabilityChange}
+          />
+          <p className="par-checkbox"></p>
+          {availability ? 'В наявності ' : 'Немає в наявності'}
+        </label>
+        <label className="add-label">
+          Технічні характеристики:
+          {specsArray.map((spec) => (
+            <span>{spec}</span>
+          ))}
+          <input id="specsInput" type="text" />
+          <button type="button" onClick={handleAddField}>
+            Додати поле
+          </button>
+        </label>
+        <button type="submit" onSubmit={handleSubmit}>
+          Додати
+        </button>
+      </form>
+    </div>
+  );
 };
 
 export default AddItemPage;

@@ -1,5 +1,4 @@
-
-
+import { useEffect, useState } from 'react';
 import './App.css';
 import AddItemPage from './components/form/Form';
 import { ItemList } from './components/list/List';
@@ -32,17 +31,30 @@ import { ItemList } from './components/list/List';
 // };
 
 function App() {
-
-  
-        return (
-    <>
-            <ItemList />
-            <AddItemPage/>
-    
-    </>
-  )
+  const [buttonClass, setButtonClass] = useState('buttonForForm');
+  const [formClass, setFormClass] = useState('form_hidden');
+  const handleButtonClick = () => {
+    if (buttonClass === 'buttonForForm') {
+      setButtonClass('buttonForForm_hidden');
+      setFormClass('form');
+    } else {
+      setButtonClass('buttonForForm');
+      setFormClass('form_hidden');
     }
-    
+  };
+  useEffect(() => {
+    if (formClass === 'form_hidden') setButtonClass('buttonForForm');
+  });
 
+  return (
+    <>
+      <ItemList />
+      <button type="button" className={buttonClass} onClick={handleButtonClick}>
+        {buttonClass === 'buttonForForm' ? "Додати новий об'єкт" : 'Х'}
+      </button>
+      <AddItemPage formClass={formClass} />
+    </>
+  );
+}
 
 export default App;
