@@ -1,0 +1,27 @@
+.imput-checkbox {display: flex;
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    appearance: none;
+}
+.label-checkbox {
+    display: inline-block;
+}
+.par-checkbox {
+    display: inline-block;
+    position: relative;
+    padding: 8px;
+    padding-left: 3.6em;
+}
+.par-checkbox::before {
+    content: '';
+    display: block;
+    width: 3.5em;
+    height: 1.6em;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: antiquewhite;
+    border-radius: 18px;
+}

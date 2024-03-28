@@ -1,6 +1,7 @@
 
 
 import './App.css';
+import AddItemPage from './components/form/Form';
 import { ItemList } from './components/list/List';
 // import { getAll } from './redux/actions';
 // import fetchGallery from './redux/news-service';
@@ -35,7 +36,8 @@ function App() {
   
         return (
     <>
-      <ItemList /> 
+            <ItemList />
+            <AddItemPage/>
     
     </>
   )

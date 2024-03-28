@@ -1,30 +1,22 @@
-
-import NewsApiService from "../../redux/news-service"
-import { Item } from "../item/item";
+import { useState, useEffect } from 'react';
+import { fetchGallery } from "../../redux/news-service";
+import { Item } from "../item/item.jsx";
+import '../item/item.scss'
 
 export const ItemList = () => {
-        async function getItems () {
-        const gatAll = new NewsApiService();
-        const result = await gatAll.fetchItems()
-        console.log(result)
-        return result;
-  }
-    // const gatAll = new NewsApiService();
-    // const items = await gatAll.fetchItems()
+    const [items, setItems] = useState([]);
 
-    console.log("[f[f[f[f", items)
-    
+    useEffect(() => {
+        fetchGallery()
+            .then(items => setItems(items))
+            .catch(error => console.error('Помилка:', error));
+    }, []);
+
     return (
-        <ul>
-            {items.map(({_id, poster, title, price}) => {
-                <Item id={_id} poster={poster}
-                        title={title}
-                        price={price}/>
-            })}
+        <ul className='item-list'>
+            {items.map(({ _id, poster, title, price }) => (
+                <Item key={_id} id={_id} poster={poster} title={title} price={price} />
+            ))}
         </ul>
-    )
-
-
-
-
-}
+    );
+};

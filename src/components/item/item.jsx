@@ -1,3 +1,4 @@
+import propTypes from 'prop-types';
 import { useState } from 'react';
 import './item.scss';
 
@@ -17,10 +18,10 @@ export const Item = ({
   };
   
   return (
-    <div className={`item-container ${isFlipped ? 'flipped' : ''}`}>
+    <li className={`item-container ${isFlipped ? 'flipped' : ''}`}>
       <div className="item-front">
-        <img src={poster} alt={title}></img>
-        <p className="item-par">{title}</p>
+        <img src={poster} alt={title} className='item-image'></img>
+        <h4 className="item-title">{title}</h4>
         <div className="item-span-container">
           <span className="item-span">{price}</span>
           {availability ? (
@@ -56,6 +57,14 @@ export const Item = ({
           Картка продукту
         </div>
       </div>
-    </div>
+    </li>
   );
 };
+
+Item.propTypes = {
+  id: propTypes.string,
+  poster: propTypes.string,
+  price: propTypes.number,
+  title: propTypes.string,
+  availability: propTypes.object,
+}

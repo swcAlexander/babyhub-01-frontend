@@ -30,6 +30,33 @@ export default class NewsApiService {
       console.log('Помилка!');
     }
   }
+  async postItem(poster, title, price, availability, specifications) {
+        const formData = new FormData();
+        formData.append('poster', poster);
+        formData.append('title', title);
+        formData.append('price', price);
+        formData.append('availability', availability);
+        specifications.forEach((spec, index) => {
+            formData.append(`specifications[${index}]`, spec);
+        });
+
+        const axiosOptions = {
+            method: 'post',
+            url: 'http://localhost:3000/api/items',
+            data: formData,
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        };
+
+        try {
+            const response = await axios(axiosOptions);
+            return response.data;
+        } catch (error) {
+            console.log('Помилка при додаванні об\'єкта:', error);
+            throw error;
+        }
+    }
 
   incrementPage() {
     this.page += 1;
