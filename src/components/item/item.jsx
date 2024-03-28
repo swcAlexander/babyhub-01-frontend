@@ -8,7 +8,7 @@ export const Item = ({
   price,
   title,
   availability,
-  // specifications,
+  specifications,
 }) => {
   const avi = availability ? 'Доступно' : 'Не доступно';
   const [isFlipped, setIsFlipped] = useState(false);
@@ -45,14 +45,14 @@ export const Item = ({
       </div>
 
       <div className="item-back">
-        {/* <h3>Технічні характеристики</h3>
+        <h3>Технічні характеристики</h3>
         <ul className='item-back-list'>
-          {specifications.map((spec) => (
+          {specifications ? specifications.map((spec) => (
             <li key={id}>
               {spec}
             </li>
-          ))}
-        </ul> */}
+          )): <span> Немає додаткових характеристик</span>}
+        </ul> 
         <div className="product-icon" onClick={handleClick}>
           Картка продукту
         </div>
@@ -67,4 +67,5 @@ Item.propTypes = {
   price: propTypes.number,
   title: propTypes.string,
   availability: propTypes.object,
+  specifications: propTypes.array,
 }

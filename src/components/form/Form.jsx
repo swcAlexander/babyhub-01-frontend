@@ -6,14 +6,14 @@ const AddItemPage = () => {
     const [poster, setPoster] = useState(null);
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
-    const [availability, setAvailability] = useState(false);
+    const [availability, setAvailability] = useState('available');
     const [specifications, setSpecifications] = useState([]);
 
     const handleFileChange = (e) => {
         setPoster(e.target.files[0]);
     };
     const handleAvailabilityChange = (e) => {
-    setAvailability(e.target.checked);
+    setAvailability(e.target.value);
 };
 
     const handleSubmit = async (e) => {
@@ -44,9 +44,10 @@ const AddItemPage = () => {
                     Ціна:
                     <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
                 </label>
-                <label className='label-checkbox'>
-                    <p className='par-checkbox'>Доступність:</p>
-                    <input className='imput-checkbox' type="checkbox" checked={availability} onChange={handleAvailabilityChange} />
+                <label className='label-checkbox' >
+                    <input className='imput-checkbox' type="radio" value="available" checked={availability === 'available'} onChange={handleAvailabilityChange} /> E ljcnegs
+                    <input className='imput-checkbox' type="radio" value="not_available" checked={availability === 'not_available'} onChange={handleAvailabilityChange} /> Ytljcnegyj
+                    <p className='par-checkbox' ></p> 
                 </label>
                 <label>
                     Технічні характеристики:
