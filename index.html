@@ -10,15 +10,48 @@
     <title>BabyHub</title>
   </head>
   <body>
-    <header class="header-container">
-      <a class="logo" href="http://localhost:5173/">
-        <img class="logo-img" src="./src/assets/logo.jpg" alt="Логотип" width="100px" height="100px">
-      </a>
-      <div class="telephone-container">
-        <p class="telephone-container_par">Телефони у луцьку:</p>
-        <ul class="telephone-container_list">
-          <li class="telephone-container_item">(097) 714-28-28</li>
-          <li class="telephone-container_item">(050) 714-28-28</li>
+    <header class="site-header">
+      <div class="container flex">
+        <nav class="nav flex">
+          <a href="./index.html" class="logo centred flex"><span class="logo__first">Baby</span><span
+              class="logo__second">Hub</span></a>
+          <ul class="nav__list list flex">
+            <li class="nav__item current">
+              <a href="./index.html" class="nav__link list current">Головна</a>
+            </li>
+            <li class="nav__item">
+              <a href="./pages/portfolio.html" class="nav__link list">Статті</a>
+            </li>
+            <li class="nav__item">
+              <a href="/" class="nav__link list">Контакти</a>
+            </li>
+          </ul>
+        </nav>
+        <ul class="contacts list flex">
+          <li class="contacts__item">
+            <a href="mailto:babyhub.lutsk@gmail.com" class="contacts__link list">
+              <svg class="contacts__mail">
+                <use href="./images/icons.svg#icon-mail" width="16" height="12"></use>
+              </svg>
+              <span>babyhub.lutsk@gmail.com</span>
+            </a>
+          </li>
+          <li class="contacts__item">
+            <a href="tel:+38(097) 714-28-28" class="contacts__link list">
+              <svg class="contacts__smartphone">
+                <use href="./src/assets/svg/icons.svg#icon-smartphone" width="10" height="16"></use>
+              </svg>
+              <span>+38(097) 714-28-28</span>
+            </a>
+          </li>
+          <li class="contacts__item">
+            <a href="tel:+38(050) 714-28-28" class="contacts__link list">
+              <svg class="contacts__smartphone">
+                <use href="./src/assets/svg/icons.svg#icon-smartphone" width="10" height="16"></use>
+              </svg>
+              <span>+38(050) 714-28-28</span>
+            </a>
+          </li>
         </ul>
       </div>
     </header>
@@ -79,7 +112,7 @@
             <label class="mailing-container__label">
               <input type="email" class="mailing-container__input" placeholder="E-mail" />
             </label>
-            <button type="submit" class="button button-sumbit">
+            <button type="submit" class="button button-submit">
               <span class="button-text">Підписатися</span>
             </button>
           </form>
