@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchGallery } from '../../redux/news-service';
 import { Item } from '../item/item.jsx';
-import '../item/item.scss';
+import './list.scss';
 
 export const ItemList = () => {
   const [items, setItems] = useState([]);
@@ -13,8 +13,9 @@ export const ItemList = () => {
   }, []);
 
   return (
-    <ul className="item-list">
-      {items.map(({ _id, poster, title, price, availability }) => (
+    <section className='item-section container'>
+          <ul className="item-list">
+      {items.map(({ _id, poster, title, price, availability, specifications }) => (
         <Item
           key={_id}
           id={_id}
@@ -22,8 +23,11 @@ export const ItemList = () => {
           title={title}
           price={price}
           availability={availability}
+          specifications={specifications}
         />
       ))}
     </ul>
+</section>
+
   );
 };

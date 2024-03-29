@@ -7,10 +7,85 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css" />
-    <title>Vite + React</title>
+    <title>BabyHub</title>
   </head>
   <body>
-    <div id="root"></div>
+    <header class="header-container">
+      <a class="logo" href="http://localhost:5173/">
+        <img class="logo-img" src="./src/assets/logo.jpg" alt="Логотип" width="100px" height="100px">
+      </a>
+      <div class="telephone-container">
+        <p class="telephone-container_par">Телефони у луцьку:</p>
+        <ul class="telephone-container_list">
+          <li class="telephone-container_item">(097) 714-28-28</li>
+          <li class="telephone-container_item">(050) 714-28-28</li>
+        </ul>
+      </div>
+    </header>
+    <main>
+      <div id="root"></div>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__content">
+          <a href="/" class="footer__logo list"><span class="logo__first">Web</span><span
+              class="footer__logo--color-white">Studio</span></a>
+          <address>
+            <ul class="footer__list list">
+              <li class="footer__item">
+                <p class="footer__text">м. Київ, пр-т Лесі Українки, 26</p>
+              </li>
+              <li class="footer__item"><a class="footer__address">info@devstudio.com</a></li>
+              <li class="footer__item"><a class="footer__address">+38 096 111 11 11</a></li>
+            </ul>
+          </address>
+        </div>
+        <div class="social-container">
+          <h3 class="social-container__title">Приєднуйтесь</h3>
+          <ul class="social-links">
+            <li class="social-links__item">
+              <a href="/" class="social-links__link">
+                <svg class="social-links__icon">
+                  <use href="./src/assets/svg/.icons.svg#icon-instagram" width="20px" height="20px"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="social-links__item">
+              <a href="/" class="social-links__link">
+                <svg class="social-links__icon">
+                  <use href="./src/assets/svg/icons.svg#icon-twitter" width="20px" height="20px"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="social-links__item">
+              <a href="/" class="social-links__link">
+                <svg class="social-links__icon">
+                  <use href="./src/assets/svg/icons.svg#icon-facebook" width="20px" height="20px"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="social-links__item">
+              <a href="/" class="social-links__link">
+                <svg class="social-links__icon">
+                  <use href="./src/assets/svg/icons.svg#icon-linkedin" width="20px" height="20px"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="mailing-container">
+          <span class="mailing-container__text">Підпишіться на розсилку</span>
+          <form class="mailing-container__form">
+            <label class="mailing-container__label">
+              <input type="email" class="mailing-container__input" placeholder="E-mail" />
+            </label>
+            <button type="submit" class="button button-sumbit">
+              <span class="button-text">Підписатися</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </footer>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

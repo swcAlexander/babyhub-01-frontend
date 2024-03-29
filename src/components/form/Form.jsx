@@ -8,10 +8,10 @@ const AddItemPage = ({ formClass }) => {
   const [kind, setKind] = useState('');
   const [price, setPrice] = useState('');
   const [availability, setAvailability] = useState(false);
-  const specsArray = [];
+  const specifications = [];
 
   const handleAddField = () => {
-    specsArray.push(document.getElementById('specsInput').value);
+    specifications.push(document.getElementById('specsInput').value);
     document.getElementById('specsInput').value = '';
   };
 
@@ -25,7 +25,6 @@ const AddItemPage = ({ formClass }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newsApiService = new NewsApiService();
-    const specifications = specsArray;
     try {
       await newsApiService.postItem(
         title,
@@ -39,6 +38,7 @@ const AddItemPage = ({ formClass }) => {
       console.error("Помилка при додаванні об'єкта:", error);
     }
   };
+  let key=0;
 
   return (
     <div className={formClass}>
@@ -85,8 +85,9 @@ const AddItemPage = ({ formClass }) => {
         </label>
         <label className="add-label">
           Технічні характеристики:
-          {specsArray.map((spec) => (
-            <span>{spec}</span>
+          { 
+            specifications.map((spec) => (
+            <span key={key=key+1}>{spec}</span>
           ))}
           <input id="specsInput" type="text" />
           <button type="button" onClick={handleAddField}>

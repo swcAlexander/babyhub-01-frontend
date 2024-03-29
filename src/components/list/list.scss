@@ -1,0 +1,31 @@
+.item-list {
+    display: inline-flex;
+    flex-direction: row;
+    list-style: none;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 20px;
+    justify-content: center;
+}
+.item-section {
+
+    width: 480px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+}
+@media screen and (min-width: 720px) {
+    .item-section {
+        width: 480px;
+    }
+    
+}
+@media screen and (min-width: 1280px) {
+    .item-section {
+        width: 1200px;
+
+    }
+
+}

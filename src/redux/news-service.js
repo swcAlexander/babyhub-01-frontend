@@ -29,18 +29,11 @@ export default class NewsApiService {
     }
   }
   async postItem(title, price, poster, kind, availability, specifications) {
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('price', price);
-    formData.append('poster', poster);
-    formData.append('kind', kind);
-    formData.append('availability', availability);
-    formData.append('specifications', specifications);
 
     const axiosOptions = {
       method: 'post',
       url: 'http://localhost:3000/api/items',
-      data: formData,
+      data: {title, price, poster, kind, availability, specifications},
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -48,6 +41,7 @@ export default class NewsApiService {
 
     try {
       const response = await axios(axiosOptions);
+      console.log(response.data)
       return response.data;
     } catch (error) {
       console.log("Помилка при додаванні об'єкта:", error);
