@@ -26,7 +26,7 @@ export const ItemList = () => {
           specifications={specifications}
         />
       ))}
-    </ul>
+      </ul>
 </section>
 
   );
