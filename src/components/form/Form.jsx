@@ -3,19 +3,13 @@ import { useState } from 'react';
 import NewsApiService from '../../redux/news-service';
 import './form.scss';
 
-const AddItemPage = () => {
+const AddItemPage = ({ onClose }) => {
   const [poster, setPoster] = useState(null);
   const [title, setTitle] = useState('');
   const [kind, setKind] = useState('');
   const [price, setPrice] = useState('');
   const [availability, setAvailability] = useState(false);
   const specifications = [];
-
-
-  const [formClass, setFormClass] = useState('form_hidden');
-  const handleButtonClick = () => {
-    setFormClass('form_hidden');
-  };
 
   const handleAddField = () => {
     specifications.push(document.getElementById('specsInput').value);
@@ -44,15 +38,16 @@ const AddItemPage = () => {
     } catch (error) {
       console.error("Помилка при додаванні об'єкта:", error);
     }
+    onClose();
   };
-  let key=0;
+  let key = 0;
 
   return (
-    <div className={formClass}>
+    <div className="form">
       <div className="modal">
-        <button type="button" className="button-close" onClick={handleButtonClick}>
+        <button type="button" className="button-close" onClick={onClose}>
           <svg className="button-close__image" width="18" height="18">
-            <use href=""></use>
+            <use href="./src/assets/svg/icons.svg#icon-close-black"></use>
           </svg>
         </button>
         <p className="modal__header">Залиште свої дані, ми вам передзвонимо</p>
@@ -60,7 +55,11 @@ const AddItemPage = () => {
           <h2>Додати об'єкт</h2>
           <label className="add-label">
             Фото:
-            <input type="file" onChange={handleFileChange} accept="image/jpeg" />
+            <input
+              type="file"
+              onChange={handleFileChange}
+              accept="image/jpeg"
+            />
           </label>
           <label className="add-label">
             Назва:
@@ -77,10 +76,12 @@ const AddItemPage = () => {
               value={kind}
               onChange={(e) => setKind(e.target.value)}
             /> */}
-            <select name="category" value={kind}
+            <select
+              name="category"
+              value={kind}
               onChange={(e) => setKind(e.target.value)}>
               <option value="Автокрісла">Автокрісла</option>
-              <option value="Ваги дитячі" selected>Ваги дитячі</option>
+              <option value="Ваги дитячі">Ваги дитячі</option>
               <option value="Ранній старт, горки">Ранній старт, горки</option>
               <option value="Коляски">Коляски</option>
               <option value="Молоковідсмоктувачі">Молоковідсмоктувачі</option>
@@ -120,15 +121,14 @@ const AddItemPage = () => {
           </label>
           <label className="add-label">
             Технічні характеристики:
-            { 
-              specifications.map((spec) => (
-              <span key={key=key+1}>{spec}</span>
-            ))}
             <input id="specsInput" type="text" />
             <button type="button" onClick={handleAddField}>
               Додати поле
             </button>
           </label>
+          {specifications.map((spec) => (
+            <span key={(key = key + 1)}>{spec}</span>
+          ))}
           <button type="submit" onSubmit={handleSubmit}>
             Додати
           </button>

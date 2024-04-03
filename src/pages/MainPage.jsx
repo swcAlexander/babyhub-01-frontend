@@ -1,17 +1,21 @@
+import { ItemList } from '../components/list/List';
+import AddItemPage from '../components/form/Form';
+import { useState } from 'react';
 
-import { ItemList } from "../components/list/List";
-import AddItemPage from "../components/form/Form";
+export const MainPage = () => {
+  const [showForm, setShowForm] = useState(false);
 
-
-export const MainPage =()=> {
+  const toggleForm = () => {
+    setShowForm(!showForm);
+  };
 
   return (
     <>
-        <ItemList />
-        <button className="buttonForForm" >
-           Додати об'єкт   
-        </button>
-        <AddItemPage />
+      <ItemList />
+      <button className="buttonForForm" onClick={toggleForm}>
+        Додати об'єкт
+      </button>
+      {showForm && <AddItemPage onClose={() => setShowForm(false)} />}
     </>
   );
-}
+};

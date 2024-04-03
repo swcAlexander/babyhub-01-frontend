@@ -29,11 +29,10 @@ export default class NewsApiService {
     }
   }
   async postItem(title, price, poster, kind, availability, specifications) {
-
     const axiosOptions = {
       method: 'post',
       url: 'http://localhost:3000/api/items',
-      data: {title, price, poster, kind, availability, specifications},
+      data: { title, price, poster, kind, availability, specifications },
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -41,7 +40,6 @@ export default class NewsApiService {
 
     try {
       const response = await axios(axiosOptions);
-      console.log(response.data)
       return response.data;
     } catch (error) {
       console.log("Помилка при додаванні об'єкта:", error);
@@ -76,6 +74,5 @@ export default class NewsApiService {
 export async function fetchGallery() {
   const gatAll = new NewsApiService();
   const result = await gatAll.fetchItems();
-  console.log(result);
   return result;
 }

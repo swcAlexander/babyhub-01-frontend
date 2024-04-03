@@ -12,15 +12,16 @@ export const Item = ({
 }) => {
   const avi = availability ? 'Доступно' : 'Не доступно';
   const [isFlipped, setIsFlipped] = useState(false);
+  let key = 0;
 
   const handleClick = () => {
     setIsFlipped(!isFlipped);
   };
-  
+
   return (
     <li className={`item-container ${isFlipped ? 'flipped' : ''}`}>
       <div className="item-front">
-        <img src={poster} alt={title} className='item-image'></img>
+        <img src={poster} alt={title} className="item-image"></img>
         <h4 className="item-title">{title}</h4>
         <div className="item-span-container">
           <span className="item-span">{price}</span>
@@ -46,13 +47,13 @@ export const Item = ({
 
       <div className="item-back">
         <h3>Технічні характеристики</h3>
-        <ul className='item-back-list'>
-          {specifications ? specifications.map((spec) => (
-            <li key={id}>
-              {spec}
-            </li>
-          )): <span> Немає додаткових характеристик</span>}
-        </ul> 
+        <ul className="item-back-list">
+          {specifications ? (
+            specifications.map((spec) => <li key={(key = key + 1)}>{spec}</li>)
+          ) : (
+            <span> Немає додаткових характеристик</span>
+          )}
+        </ul>
         <div className="product-icon" onClick={handleClick}>
           Картка продукту
         </div>
@@ -64,8 +65,8 @@ export const Item = ({
 Item.propTypes = {
   id: propTypes.string,
   poster: propTypes.string,
-  price: propTypes.number,
+  price: propTypes.string,
   title: propTypes.string,
-  availability: propTypes.object,
+  availability: propTypes.bool,
   specifications: propTypes.array,
-}
+};
