@@ -15,7 +15,7 @@ export const MainPage = () => {
       <button className="buttonForForm" onClick={toggleForm}>
         Додати об'єкт
       </button>
-      {showForm && <AddItemPage onClose={() => setShowForm(false)} />}
+       <AddItemPage showForm={showForm} onClose={() => setShowForm(false)} />
     </>
   );
 };

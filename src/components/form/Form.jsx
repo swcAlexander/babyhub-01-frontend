@@ -1,9 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
+import propTypes from "prop-types"
 import { useState } from 'react';
 import NewsApiService from '../../redux/news-service';
 import './form.scss';
 
-const AddItemPage = ({ onClose }) => {
+const AddItemPage = ({ showForm, onClose }) => {
   const [poster, setPoster] = useState(null);
   const [title, setTitle] = useState('');
   const [kind, setKind] = useState('');
@@ -43,40 +44,37 @@ const AddItemPage = ({ onClose }) => {
   let key = 0;
 
   return (
-    <div className="form">
+    <div className={showForm ? "form" : 'form_hidden'}>
       <div className="modal">
         <button type="button" className="button-close" onClick={onClose}>
           <svg className="button-close__image" width="18" height="18">
             <use href="./src/assets/svg/icons.svg#icon-close-black"></use>
           </svg>
         </button>
-        <p className="modal__header">Залиште свої дані, ми вам передзвонимо</p>
+        <p className="modal__header">ДОДАТИ ОБ'ЄКТ</p>
         <form className="add-form" onSubmit={handleSubmit}>
-          <h2>Додати об'єкт</h2>
           <label className="add-label">
-            Фото:
+            <span className="modal__text">Фото:</span>
             <input
               type="file"
+              className="form-input"
               onChange={handleFileChange}
               accept="image/jpeg"
             />
           </label>
           <label className="add-label">
-            Назва:
+            <span className="modal__text">Назва:</span>
             <input
               type="text"
+              className="form-input"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </label>
           <label className="add-label">
-            Вид:
-            {/* <input
-              type="text"
-              value={kind}
-              onChange={(e) => setKind(e.target.value)}
-            /> */}
+            <span className="modal__text">Вид:</span>
             <select
+              className="form-input"
               name="category"
               value={kind}
               onChange={(e) => setKind(e.target.value)}>
@@ -101,8 +99,9 @@ const AddItemPage = ({ onClose }) => {
             </select>
           </label>
           <label className="add-label">
-            Ціна:
+            <span className="modal__text">Ціна:</span>
             <input
+              className="form-input"
               type="text"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
@@ -120,8 +119,8 @@ const AddItemPage = ({ onClose }) => {
             {availability ? 'В наявності ' : 'Немає в наявності'}
           </label>
           <label className="add-label">
-            Технічні характеристики:
-            <input id="specsInput" type="text" />
+            <span className="modal__text">Технічні характеристики:</span>
+            <input className="form-input" id="specsInput" type="text" />
             <button type="button" onClick={handleAddField}>
               Додати поле
             </button>
@@ -137,5 +136,10 @@ const AddItemPage = ({ onClose }) => {
     </div>
   );
 };
+
+AddItemPage.propTypes = {
+  showForm: propTypes.bool.isRequired,
+  onClose: propTypes.func.isRequired
+}
 
 export default AddItemPage;
